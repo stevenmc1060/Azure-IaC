@@ -1,0 +1,117 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {
+    "spokeVnet01Prefix": "10.0.1.0/24",
+    "spokeVnet01Subnet1Name": "Subnet-1",
+    "spokeVnet01Subnet1Prefix": "10.0.1.0/26",
+    "spokeVnet01Subnet2Name": "Subnet-2",
+    "spokeVnet01Subnet2Prefix": "10.0.1.64/28",
+    "hubVnet01Prefix": "10.0.2.0/24",
+    "hubVnet01Subnet1Name": "Subnet-1",
+    "hubVnet01Subnet1Prefix": "10.0.2.0/26",
+    "hubVnet01Subnet2Name": "Subnet-2",
+    "hubVnet01Subnet2Prefix": "10.0.2.64/28",
+    "spokeVnet02Prefix": "10.0.3.0/24",
+    "spokeVnet02Subnet1Name": "Subnet-1",
+    "spokeVnet02Subnet1Prefix": "10.0.3.0/26",
+    "spokeVnet02Subnet2Name": "Subnet-2",
+    "spokeVnet02Subnet2Prefix": "10.0.3.64/28",
+  },
+  "resources": [
+    {
+      "name": "spokeVnet01",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "spokeVnet01"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('spokeVnet01Prefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('spokeVnet01Subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('spokeVnet01Subnet1Prefix')]"
+            }
+          },
+          {
+            "name": "[variables('spokeVnet01Subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[variables('spokeVnet01Subnet2Prefix')]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "hubVnet01",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "hubVnet01"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('hubVnet01Prefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('hubVnet01Subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('hubVnet01Subnet1Prefix')]"
+            }
+          },
+          {
+            "name": "[variables('hubVnet01Subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[variables('hubVnet01Subnet2Prefix')]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "spokeVnet02",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "spokeVnet02"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('spokeVnet02Prefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('spokeVnet02Subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('spokeVnet02Subnet1Prefix')]"
+            }
+          },
+          {
+            "name": "[variables('spokeVnet02Subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[variables('spokeVnet02Subnet2Prefix')]"
+            }
+          }
+        ]
+      }
+    }],
+  "outputs": {}
+}
